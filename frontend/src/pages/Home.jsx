@@ -7,6 +7,7 @@ import { BsInfoCircle } from "react-icons/bs";
 import { MdOutlineAddBox, MdOutlineDelete } from "react-icons/md";
 function Home() {
   const [books, setBooks] = useState([]);
+  let count=1;
   const [loading, setLoading] = useState(false);
   useEffect(() => {
     
@@ -27,9 +28,10 @@ function Home() {
     <div className="p-4">
         <div className="flex justify-between items-center">
             <h1 className="text-3xl my-8">Books list</h1>
-            <Link to='/book/create'>
-              <MdOutlineAddBox className="text-sky-800 text-4xl"/>
+            <Link to='/book/create' className="flex items-center">
+             careate book <MdOutlineAddBox className="text-sky-800 text-4xl"/>
             </Link>
+            
         </div>
 
         <table className="w-full border-separate border-spacing-2">
@@ -49,11 +51,13 @@ function Home() {
 
 
    <tbody>
+    
      {
+      
       books.map(book=>{
         return <tr  key={book._id}>
           <td className="border border-slate-700 rounded-md text-center">
-          {+1}
+          {count++}
         </td>
         <td className="border border-slate-700 rounded-sm text-center">
           {book.name}
@@ -73,7 +77,7 @@ function Home() {
               <AiOutlineEdit className="text-2xl text-yellow-600"/>
             </Link>
             <Link to={`/book/delete/${book._id}`}>
-              <md className="text-2xl text-yellow-600"/>
+              <MdOutlineDelete className="text-2xl text-yellow-600"/>
             </Link>
            </div>
         </td>
